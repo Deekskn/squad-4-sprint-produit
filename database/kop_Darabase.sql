@@ -68,12 +68,12 @@ SELECT
     p.nom,
     p.prenom,
     p.metier,
-    p.descriptn,
+    p.descript,
     p.annees_experience,
     p.created_at
 FROM professionnel p
 WHERE p.masque = FALSE
-  AND p.descriptn IS NOT NULL
-  AND CHAR_LENGTH(TRIM(p.descriptn)) >= 30
+  AND p.descript IS NOT NULL
+  AND CHAR_LENGTH(TRIM(p.descript)) >= 30
   AND EXISTS (SELECT 1 FROM photo ph WHERE ph.id_pro = p.id_pro)
   AND EXISTS (SELECT 1 FROM professionnel_zone pz WHERE pz.id_pro = p.id_pro);
