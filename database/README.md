@@ -1,14 +1,13 @@
 # Database
 
-Ce dossier contiendra les éléments liés à la base de données PostgreSQL.
+Schéma PostgreSQL de l’API KOPE.
 
-## Éléments prévus
+## Migration US-06
 
-Il pourra contenir :
+Appliquer `migrations/001_create_profiles.sql` à une base PostgreSQL 13 ou plus récente. Cette migration crée :
 
-- les scripts SQL ;
-- les schémas de tables ;
-- les migrations ;
-- les données de test ;
-- la documentation de la structure des données.
+- `profiles` : profil de l’artisan et indicateur `is_admin_hidden` ;
+- `profile_zones` : zones d’intervention ;
+- `profile_photos` : références URL des photos.
 
+`profiles.owner_id` est l’identifiant UUID unique fourni par le système d’authentification ; la table des utilisateurs n’est pas créée ici. La suppression d’un profil supprime ses zones et photos grâce aux clés étrangères. Le système d’administration doit positionner `is_admin_hidden` pour masquer un profil ; les recherches publiques l’excluent.
